@@ -1,0 +1,8 @@
+body { font-family: helvetica; font-size: 13px; }
+#gallery { float: left; margin-bottom: 20px; }
+#gallery .chicklets { float: left; }
+#stream { list-style-type: none; float: left; color: #999; }
+#stream .comment { }
+#stream .author { margin-right: 10px; font-weight: bold; }
+#stream img { margin-right: 10px; }
+#cb { clear:both; }
