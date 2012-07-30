@@ -11,6 +11,9 @@ var DEMO = {
 
 
 $(document).ready(function() {
+    /* Debug/console logging disabled by default */
+    DEBUG.enable();
+
    // KOOZIE.init(window, document, _taq);
 
    /* 

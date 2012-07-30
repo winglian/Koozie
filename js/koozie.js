@@ -1,8 +1,32 @@
-var DEBUG = {
-    'log':function(result) {
-        console.log(result);
+var DEBUG = (function() {
+    // disable console logging by default so we don't accidentally log stuff out
+    var _enabled = false;
+    var enable = function() {
+      _enabled = true;
+    };
+    var disable = function() {
+      _enabled = false;
     }
-}
+    /* don't use console.log directly as not usually in IE and will break things */
+    var log_wrapper = function(result, consoleMethod) {
+        if (window.console && window.console.firebug && window.console.firebug.replace(/^\s\s*/, '').replace(/\s\s*$/, '') !== '') {
+          if (typeof consoleMethod === "string" && typeof console[consoleMethod] === "function") {
+            if (_enabled) console[consoleMethod](result);
+          } else {
+            if (_enabled) console.log(result);
+          }
+        } else if (window.console.log) {
+          if (_enabled) console.log(result);
+        }
+    };
+
+    return {
+        log: log_wrapper,
+        enable: enable,
+        disable: disable
+    };
+
+}());
 
 var GALLERY = {
     'get':function(properties, success, fail, debug) {
